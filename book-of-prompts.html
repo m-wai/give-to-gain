@@ -56,8 +56,6 @@
         .logos img {
             height: 40px;
             object-fit: contain;
-            filter: brightness(0) invert(1);
-            opacity: 0.9;
         }
 
         .hashtag {
@@ -95,6 +93,16 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        /* NEW: Event Banner Styling */
+        .event-banner {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .header {
@@ -270,8 +278,8 @@
 
     <nav class="navbar">
         <div class="logos">
-            <img src="https://logo.clearbit.com/aicollective.co" alt="AI Collective Logo" onerror="this.src='https://via.placeholder.com/200x60/ffffff/0f172a?text=AI+Collective'">
-            <img src="https://logo.clearbit.com/womeninai.co" alt="Women in AI Logo" onerror="this.src='https://via.placeholder.com/200x60/ffffff/0f172a?text=Women+in+AI'">
+            <img src="./AIC_Logo-White.svg" alt="AI Collective Logo">
+            <img src="./WAI_Logo_White_www.avif" alt="Women in AI Logo">
         </div>
         <div class="hashtag">#GiveToGain</div>
     </nav>
@@ -279,6 +287,8 @@
     <main class="container">
         <div class="glass-card">
             
+            <img src="./Dizajn%20bez%20naslova_edited.avif" alt="Give to Gain Event Banner" class="event-banner">
+
             <div class="header">
                 <h1>W2G: Big Book of Prompts</h1>
                 <p>In the spirit of our Give to Gain campaign, share your most powerful prompt to gain the <span class="highlight-text">Big Book of Prompts</span> and learn from other community members' experience.</p>
