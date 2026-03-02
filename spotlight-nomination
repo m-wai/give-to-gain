@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Give to Gain: Community Spotlight | Halifax Vol. 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #a855f7; /* Vibrant Purple */
+            --primary-glow: rgba(168, 85, 247, 0.4);
+            --secondary: #3b82f6; /* Electric Blue */
+            --accent: #f59e0b; /* Prestige Gold */
+            --bg-dark: #09090b;
+            --surface: rgba(24, 24, 27, 0.75);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --text-main: #fafafa;
+            --text-muted: #a1a1aa;
+            --radius: 16px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            /* Prestige abstract AI background */
+            background-image: radial-gradient(circle at 20% 0%, rgba(168, 85, 247, 0.15), transparent 40%),
+                              radial-gradient(circle at 80% 100%, rgba(245, 158, 11, 0.1), transparent 40%),
+                              url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(9, 9, 11, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--surface-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logos {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .logos img {
+            height: 38px;
+            object-fit: contain;
+        }
+
+        .hashtag {
+            font-weight: 600;
+            font-size: 0.9em;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .glass-card {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--surface-border);
+            border-radius: var(--radius);
+            padding: 50px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Prestige Gold Top Line */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), var(--primary), transparent);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            margin: 0 0 15px 0;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, #d8b4fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 700px;
+        }
+
+        /* Styling for the requirements description */
+        .criteria-box {
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            padding: 25px 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            color: var(--text-main);
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .criteria-box ul {
+            margin: 15px 0;
+            padding-left: 20px;
+            color: #d4d4d8;
+        }
+
+        .criteria-box li {
+            margin-bottom: 8px;
+        }
+
+        .criteria-box strong {
+            color: var(--accent);
+        }
+
+        form { display: flex; flex-direction: column; gap: 30px; }
+        .form-group { display: flex; flex-direction: column; gap: 10px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        label.section-label {
+            font-size: 1.05em;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 2px;
+        }
+
+        .required { color: var(--primary); }
+
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(9, 9, 11, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        textarea { min-height: 120px; resize: vertical; }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+            background: rgba(9, 9, 11, 0.8);
+        }
+
+        /* Radio & Checkbox Styling */
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: rgba(9, 9, 11, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .option-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--text-main);
+            font-weight: 400;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: color 0.2s;
+            line-height: 1.4;
+        }
+
+        .option-label:hover { color: var(--primary); }
+        .option-label input[type="radio"], .option-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+            margin: 2px 0 0 0;
+            flex-shrink: 0;
+        }
+
+        .other-field { margin-top: 5px; width: calc(100% - 30px); margin-left: 30px; }
+
+        button {
+            margin-top: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
+        }
+
+        .footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.9em; }
+
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .glass-card { padding: 30px 20px; }
+            .header h1 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logos">
+            <img src="./AIC_Logo-White.svg" alt="AI Collective Logo">
+            <img src="./WAI_Logo_White_www.avif" alt="Women in AI Logo">
+            <img src="./Dizajn%20bez%20naslova_edited.avif" alt="WiML Logo">
+        </div>
+        <div class="hashtag">#GiveToGain</div>
+    </nav>
+
+    <main class="container">
+        <div class="glass-card">
+            
+            <div class="header">
+                <h1>Community Spotlight</h1>
+                <p>Call for Nominations</p>
+            </div>
+
+            <div class="criteria-box">
+                This is a curated recognition opportunity for women who have <strong>given with AI</strong> through a real initiative—such as a community program, research contribution, open resource, ethical AI leadership, or an AI-powered product/project with measurable benefit.
+                <br><br>
+                To be eligible, nominees must:
+                <ul>
+                    <li>Have led or significantly contributed to an <strong>AI initiative</strong> (project, product, research, resource, program, or deployment)</li>
+                    <li>Be able to explain the <strong>problem, approach, and impact</strong></li>
+                    <li>Be willing to deliver a <strong>5–7 minute spotlight with 3–6 slides</strong> at <em>Give to Gain: IWD 2026 — Halifax</em></li>
+                </ul>
+                <em>Note: This is not a promotional pitch. If your initiative is commercial, the focus must be on what you gave and what others gained.</em>
+            </div>
+
+            <form action="https://docs.google.com/forms/d/e/1FAIpQLSef5Rhd-00RvFzTYDjHveX3s2H8a_WFtCdRp68n3gul4Z1vKg/formResponse" method="POST">
+                
+                <div class="form-group">
+                    <label class="section-label">Your Contact Email <span class="required">*</span></label>
+                    <input type="email" name="entry.1288413272" placeholder="your.email@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="section-label">Nomination Type <span class="required">*</span></label>
+                    <div class="options-grid">
+                        <label class="option-label"><input type="radio" name="entry.1102356923" value="I’m nominating myself" required> I’m nominating myself</label>
+                        <label class="option-label"><input type="radio" name="entry.1102356923" value="I’m nominating someone else" required> I’m nominating someone else</label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="section-label">Nominee Full Name <span class="required">*</span></label>
+                        <input type="text" name="entry.1330134253" placeholder="Jane Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="section-label">Nominee Email <span class="required">*</span></label>
+                        <input type="email" name="entry.87003157" placeholder="jane@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="section-label">Nominee LinkedIn <span class="required">*</span></label>
+                        <input type="text" name="entry.1876791641" placeholder="https://linkedin.com/in/..." required>
+                    </div>
+                    <div class="form-group">
+                        <label class="section-label">Nominee Role & Organization <span class="required">*</span></label>
+                        <input type="text" name="entry.372691843" placeholder="e.g., Data Scientist at TechCorp" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="section-label">The Initiative Title <span class="required">*</span></label>
+                    <input type="text" name="entry.1648592655" placeholder="Name of the project, research, or program" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="section-label">The Initiative Type <span class="required">*</span></label>
+                    <div class="options-grid">
+                        <label class="option-label"><input type="radio" name="entry.1574365192" value="Community initiative / nonprofit program" required> Community initiative / nonprofit program</label>
+                        <label class="option-label"><input type="radio" name="entry.1574365192" value="Research project / paper / thesis work" required> Research project / paper / thesis work</label>
+                        <label class="option-label"><input type="radio" name="entry.1574365192" value="Open resource (toolkit, dataset, curriculum, guide)" required> Open resource (toolkit, dataset, curriculum, guide)</label>
+                        <label class="option-label"><input type="radio" name="entry.1574365192" value="Startup / product / venture" required> Startup / product / venture</label>
+                        <label class="option-label"><input type="radio" name="entry.1574365192" value="Internal organizational deployment (public sector / education / healthcare / business)" required> Internal organizational deployment (public sector / education / healthcare / business)</label>
+                        <label class="option-label"><input type="radio" name="entry.1574365192" value="__other_option__" required> Other</label>
+                        <input type="text" class="other-field" name="entry.1574365192.other_option_response" placeholder="If Other, please specify...">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="section-label">The "Give" (Initiative Details) <span class="required">*</span></label>
+                    <textarea name="entry.1654662420" placeholder="What was the specific AI project, research, or community initiative? Detail exactly how it served the AI community or the general public..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="section-label">The Case for Recognition <span class="required">*</span></label>
+                    <textarea name="entry.563937838" placeholder="Why does this individual deserve the spotlight at this year's event? Highlight the specific outcomes, impact, or gains..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="section-label">Presentation Commitment <span class="required">*</span></label>
+                    <div class="options-grid">
+                        <label class="option-label">
+                            <input type="checkbox" name="entry.153082789" value="Yes, the nominee is willing and able to present a 5-7 minute slideshow on their contribution at the mixer." required> 
+                            Yes, the nominee is willing and able to present a 5-7 minute slideshow on their contribution at the mixer.
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit">Submit Nomination</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 AI Collective & Women in AI. Built for the community.</p>
+    </footer>
+
+</body>
+</html>
